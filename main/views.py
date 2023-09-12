@@ -3,6 +3,9 @@ from django.shortcuts import render
 # Create your views here.
 def show_main(request):
     context = {
+        'name'  : 'Clarista',
+        'class' : 'PBP C',
+        'npm'   : '2206815541',
         'name1'    : 'Pisang Cavendish',
         'price1'   : 20000,
         'amount1'  : 12,
