@@ -1,3 +1,7 @@
+Nama    : Clarista
+NPM     : 2206815541
+Kelas   : PBP  C
+
 Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kakak asdos, kemarin udah sempet deploy tapi akun saya disable T_T)
 
 
@@ -30,7 +34,7 @@ Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kak
 ![Bagan Nomor 2!](nomor2baganPBP.jpg)
 
 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
-    Kita menggunakan virtual environment ketika sebuah proyek membutuhkan beberapa versi Python atau third-party packages atau dependencies sekaligus, sebagai contoh adalah proyek-proyek Django. Untuk mencegah setiap proyek saling mempengengaruhi satu sama lain, maka dibutuhkan virtual environment ketika dijalankan.
+    - Kita menggunakan virtual environment ketika sebuah proyek membutuhkan beberapa versi Python atau third-party packages atau dependencies sekaligus, sebagai contoh adalah proyek-proyek Django. Untuk mencegah setiap proyek saling mempengengaruhi satu sama lain, maka dibutuhkan virtual environment ketika dijalankan.
 
     Kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment, tetapi lebih disarankan untuk menggunakan virtual environment karena membantu memiliki environment yang stabil, dapat direproduksi, dan portabel. Mengisolasi environment Python untuk suatu proyek dari sistem lainnya memastikan bahwa ketergantungan untuk setiap proyek konsisten dan dapat dengan mudah diduplikat jika menggunakan environment yang berbeda.
 
@@ -50,10 +54,10 @@ Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kak
 
 
 Referensi:
-https://www.javatpoint.com/django-virtual-environment-setup
-https://ngangasn.com/is-virtualenv-venv-necessary-for-django/#google_vignette
-https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/
-https://www.dicoding.com/blog/tips-design-pattern-mvvm/
+1. https://www.javatpoint.com/django-virtual-environment-setup
+2. https://ngangasn.com/is-virtualenv-venv-necessary-for-django/#google_vignette
+3. https://www.geeksforgeeks.org/difference-between-mvc-and-mvt-design-patterns/
+4. https://www.dicoding.com/blog/tips-design-pattern-mvvm/
 
 
     
