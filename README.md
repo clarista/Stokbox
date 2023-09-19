@@ -1,6 +1,6 @@
-Nama    : Clarista
-NPM     : 2206815541
-Kelas   : PBP  C
+Nama    : Clarista <br />
+NPM     : 2206815541 <br />
+Kelas   : PBP  C <br />
 
 Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kakak asdos, kemarin udah sempet deploy tapi akun saya disable T_T)
 
