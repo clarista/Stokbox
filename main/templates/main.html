@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %} 
+
+{% block content %}
 <head>
     <title>StokBox</title>
     <style>
@@ -18,100 +19,76 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
         }
 
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            padding: 20px;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .product {
-            background-color: #fff;
+        table, th, td {
             border: 1px solid #ccc;
-            border-radius: 5px;
-            margin: 10px;
-            padding: 15px;
-            text-align: center;
-            width: 250px;
         }
 
-        .product img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .product p {
-            font-size: 14px;
-            color: #666;
-            margin: 5px 0;
+        th, td {
+            padding: 8px;
             text-align: left;
         }
 
+        th {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
-
 <header>
     <h1>Selamat Datang, {{name}} di StokBox!</h1>
     <h4>Kelola Persediaan Buah Anda dengan Lebih Baik di StokBox</h4>
 </header>
 
-<div class="container">
-    <div class="product">
-        <img src="https://cf.shopee.co.id/file/6ce2d53621aba3b63a78987340d31ee4">
-        <h2>{{name1}}</h2>
-        <p>{{description1}}</p>
-        <br>
-        <p><strong>Harga: {{price1}}</strong></p>
-        <p>Berat: 450 - 550 gram/pack,</p>
-        <p>Stok Produk: {{amount1}}</p>
-    </div>
+    <h1>Shopping List Page</h1>
 
-    <div class="product">
-        <img src="https://images.freshop.com/2311226/af3195fa13c429464822c30de3848ed4_large.png">
-        <h2>{{name2}}</h2>
-        <p>{{description2}}</p>
-        <br>
-        <p><strong>Harga: {{price2}}</strong></p>
-        <p>Berat: 250 gram/pack</p>
-        <p>Stok Produk: {{amount2}}</p>
-    </div>
+    <h5>Name:</h5>
+    <p>{{name}}</p>
 
-    <div class="product">
-        <img src="https://www.wmart.com.my/wp-content/uploads/2022/08/Shine-Muscat-Grapes-China.jpg">
-        <h2>{{name3}}</h2>
-        <p>{{description3}}</p>
-        <br>
-        <p><strong>Harga: {{price3}}</strong></p>
-        <p>Berat: 475 - 500 gram/pack</p>
-        <p>Stok Produk: {{amount3}}</p>
-    </div>
-
-    <div class="product">
-        <img src="https://getfreshswansea.co.uk/wp-content/uploads/2020/07/cantaloupe.jpg">
-        <h2>Melon Madu</h2>
-        <h2>{{name4}}</h2>
-        <p>{{description4}}</p>
-        <br>
-        <p><strong>Harga: {{price4}}</strong></p>
-        <p>Berat: 1 - 1.5 kg/pcs</p>
-        <p>Stok Produk: {{amount4}}</p>
-    </div>
-
-    <div class="product">
-        <img src="https://cdn.shopify.com/s/files/1/0686/1432/4538/products/sssgid.zone-1690190707-Apel-Fuji-Blush-950---1000-gr-_2_-removebg-preview_540x.png?v=1690190871">
-        <h2>{{name5}}</h2>
-        <p>{{description5}}</p>
-        <br>
-        <p><strong>Harga: {{price5}}</strong></p>
-        <p>Berat: 1 kg/pack</p>
-        <p>Stok Produk: {{amount5}}</p>
-    </div>
-
-</div>
+    <h5>Class:</h5>
+    <p>{{class}}</p>
+    
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Stok</th>
+            <th>Picture</th>
+        </tr>
+    
+        {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.date_added}}</td>
+                <td>{{product.amount}}</td>
+                <td><img src = "{{product.picture}}" width=100></td>
+            </tr>
+        {% endfor %}
+    </table>
+    
+    <br />
+    
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Product
+        </button>
+    </a>
 </body>
-</html>
+{% endblock content %}
+
 
 
 
