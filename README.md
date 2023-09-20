@@ -4,6 +4,47 @@ Kelas   : PBP  C <br />
 
 Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kakak asdos, kemarin udah sempet deploy tapi akun saya disable T_T)
 
+================================================ TUGAS 3 ========================================================
+1.  Apa perbedaan antara form POST dan form GET dalam Django?
+    - Di Django, kita bisa mengetahui ada perbedaan yang signifikan antara form POST dan form GET. Form POST digunakan untuk mengirimkan data yang nantinya akan mengubah server atau menyimpannya dalam database. Sedangkan, form GET digunakan untuk mengirimkan data dalam bentuk URL dan lebih cocok untuk operasi yang hanya ingin membaca tanpa mengubah server. Perbedaan utama di antara keduanya adalah bahwa form POST digunakan untuk mengirim data yang mungkin memengaruhi server dengan operasi selanjutnya, sedangkan form GET digunakan hanya untuk pengambilan data yang tidak memiliki pengaruh apapun pada server.
+
+    Referensi:
+    https://www.geeksforgeeks.org/render-html-forms-get-post-in-django/
+
+2.  Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
+    - HTML digunakan untuk merancang tampilan dan struktur suatu halaman web, sedangkan XML dan JSON digunakan untuk menyimpan atau mengirim data antara aplikasi atau server. Perbedaan antara XML dan JSON terletak pada formatnya. JSON menggunakan tanda kurung kurawal ({}) dan memiliki struktur yang lebih mudah dibaca, sementara XML menggunakan tag awal dan akhir seperti HTML, tetapi lebih aman daripada JSON karena memungkinkan validasi struktur data.
+
+    Referensi:
+    https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
+
+3.  Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
+    - JSON sering menjadi pilihan utama dalam pertukaran data antara aplikasi web modern. Hal ini karena JSON memiliki ukuran yang lebih kecil, sehingga lebih efisien dalam proses pengiriman data. Selain itu, format JSON lebih mudah dibaca oleh manusia, dan lebih kompatibel dengan tipe data asli, JavaScript, serta berbagai teknologi web lainnya. Kombinasi ini membuat JSON menjadi pilihan yang kuat untuk pertukaran data yang efisien dan kompatibel dengan berbagai platform.
+
+    Referensi:
+    https://aws.amazon.com/compare/the-difference-between-json-xml/
+
+4.  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
+    - Membuat input form untuk menambahkan objek model pada app sebelumnya. <br />
+    Pertama-tama, saya membuat sebuah python file yang bernama forms.py pada direktori main. Kemudian saya mengimport Modelform dari Django dan Product yang ada pada models, serta mengisi kerangka Form. Kemudian saya membuat sebuah function create_product di file views.py. Saya juga mebubah isi dari context di function show_main. Saya lalu menambahkan path pada urlpattern. Dan terakhir saya membuat file create_product.html di direktori templates di main untuk menambahkan produk ke database dan kemudian mengubah main.html untuk menampilkan produk ketika produk telah kita tambahkan.
+
+    - Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.<br />
+    Dalam implementasi format data seperti XML dan JSON, prosesnya memiliki beberapa kesamaan. Contohnya, untuk tampilan dalam format XML, langkah pertama adalah membuat fungsi "show_xml." Fungsi ini akan mengambil data dari Product dan menghasilkan respons dalam bentuk HttpResponse dengan format XML. Kemudian, di file konfigurasi "urls.py," saya menambahkan path URL "xml/" agar pengguna dapat mengakses data dalam format XML. Konsep yang sama berlaku untuk format JSON, dengan pembuatan fungsi "show_json" yang menghasilkan respons JSON setelah mengambil data dari objek "Item." Pengaturan path URL juga ditambahkan di "urls.py" untuk mengarahkan pengguna ke data dalam format JSON. Format "XML by ID" dan "JSON by ID" juga menggunakan pattern yang serupa dengan format XML dan JSON. Namun, fungsi-fungsi ini menerima parameter ID untuk menampilkan data yang spesifik sesuai dengan ID yang telah kita input. 
+
+    - Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2. <br />
+    Dalam file "urls.py," setiap format diperlakukan dengan langkah-langkah yang serupa. Pertama, di baris teratas, saya melakukan impor semua fungsi yang diperlukan untuk mengelola format-format tersebut. Fungsi-fungsi ini termasuk "show_main," "create_product," "show_xml," "show_json," "show_xml_by_id," dan "show_json_by_id." Selanjutnya, saya menambahkan path URL yang sesuai untuk masing-masing format tersebut dalam daftar urlspattern. Hal ini untuk memastikan bahwa user bisa mengakses setiap format dengan mudah melalui URL yang telah ditentukan. 
+
+5.  Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+![HTML Postman!](html_postman.png)
+![XML Postman!](xml_postman.png)
+![XML Postman By ID!](xml_postman_id.png)
+![JSON Postman!](json_postman.png)
+![JSON Postman By ID!](json_postman_id.png)
+
+============================================== END TUGAS 3 ======================================================
+
+
+
+
 ================================================ TUGAS 2 ========================================================
 
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -64,42 +105,3 @@ Referensi:
 ============================================== END TUGAS 2 ======================================================
 
 
-
-
-================================================ TUGAS 3 ========================================================
-1.  Apa perbedaan antara form POST dan form GET dalam Django?
-    - Di Django, kita bisa mengetahui ada perbedaan yang signifikan antara form POST dan form GET. Form POST digunakan untuk mengirimkan data yang nantinya akan mengubah server atau menyimpannya dalam database. Sedangkan, form GET digunakan untuk mengirimkan data dalam bentuk URL dan lebih cocok untuk operasi yang hanya ingin membaca tanpa mengubah server. Perbedaan utama di antara keduanya adalah bahwa form POST digunakan untuk mengirim data yang mungkin memengaruhi server dengan operasi selanjutnya, sedangkan form GET digunakan hanya untuk pengambilan data yang tidak memiliki pengaruh apapun pada server.
-
-    Referensi:
-    https://www.geeksforgeeks.org/render-html-forms-get-post-in-django/
-
-2.  Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?
-    - HTML digunakan untuk merancang tampilan dan struktur suatu halaman web, sedangkan XML dan JSON digunakan untuk menyimpan atau mengirim data antara aplikasi atau server. Perbedaan antara XML dan JSON terletak pada formatnya. JSON menggunakan tanda kurung kurawal ({}) dan memiliki struktur yang lebih mudah dibaca, sementara XML menggunakan tag awal dan akhir seperti HTML, tetapi lebih aman daripada JSON karena memungkinkan validasi struktur data.
-
-    Referensi:
-    https://www.deltaxml.com/blog/xml/whats-the-relationship-between-xml-json-html-and-the-internet/
-
-3.  Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?
-    - JSON sering menjadi pilihan utama dalam pertukaran data antara aplikasi web modern. Hal ini karena JSON memiliki ukuran yang lebih kecil, sehingga lebih efisien dalam proses pengiriman data. Selain itu, format JSON lebih mudah dibaca oleh manusia, dan lebih kompatibel dengan tipe data asli, JavaScript, serta berbagai teknologi web lainnya. Kombinasi ini membuat JSON menjadi pilihan yang kuat untuk pertukaran data yang efisien dan kompatibel dengan berbagai platform.
-
-    Referensi:
-    https://aws.amazon.com/compare/the-difference-between-json-xml/
-
-4.  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)
-    - Membuat input form untuk menambahkan objek model pada app sebelumnya. <br />
-    Pertama-tama, saya membuat sebuah python file yang bernama forms.py pada direktori main. Kemudian saya mengimport Modelform dari Django dan Product yang ada pada models, serta mengisi kerangka Form. Kemudian saya membuat sebuah function create_product di file views.py. Saya juga mebubah isi dari context di function show_main. Saya lalu menambahkan path pada urlpattern. Dan terakhir saya membuat file create_product.html di direktori templates di main untuk menambahkan produk ke database dan kemudian mengubah main.html untuk menampilkan produk ketika produk telah kita tambahkan.
-
-    - Tambahkan 5 fungsi views untuk melihat objek yang sudah ditambahkan dalam format HTML, XML, JSON, XML by ID, dan JSON by ID.<br />
-    Dalam implementasi format data seperti XML dan JSON, prosesnya memiliki beberapa kesamaan. Contohnya, untuk tampilan dalam format XML, langkah pertama adalah membuat fungsi "show_xml." Fungsi ini akan mengambil data dari Product dan menghasilkan respons dalam bentuk HttpResponse dengan format XML. Kemudian, di file konfigurasi "urls.py," saya menambahkan path URL "xml/" agar pengguna dapat mengakses data dalam format XML. Konsep yang sama berlaku untuk format JSON, dengan pembuatan fungsi "show_json" yang menghasilkan respons JSON setelah mengambil data dari objek "Item." Pengaturan path URL juga ditambahkan di "urls.py" untuk mengarahkan pengguna ke data dalam format JSON. Format "XML by ID" dan "JSON by ID" juga menggunakan pattern yang serupa dengan format XML dan JSON. Namun, fungsi-fungsi ini menerima parameter ID untuk menampilkan data yang spesifik sesuai dengan ID yang telah kita input. 
-
-    - Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2. <br />
-    Dalam file "urls.py," setiap format diperlakukan dengan langkah-langkah yang serupa. Pertama, di baris teratas, saya melakukan impor semua fungsi yang diperlukan untuk mengelola format-format tersebut. Fungsi-fungsi ini termasuk "show_main," "create_product," "show_xml," "show_json," "show_xml_by_id," dan "show_json_by_id." Selanjutnya, saya menambahkan path URL yang sesuai untuk masing-masing format tersebut dalam daftar urlspattern. Hal ini untuk memastikan bahwa user bisa mengakses setiap format dengan mudah melalui URL yang telah ditentukan. 
-
-5.  Mengakses kelima URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
-![HTML Postman!](html_postman.png)
-![XML Postman!](xml_postman.png)
-![XML Postman By ID!](xml_postman_id.png)
-![JSON Postman!](json_postman.png)
-![JSON Postman By ID!](json_postman_id.png)
-
-============================================== END TUGAS 3 ======================================================
