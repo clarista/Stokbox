@@ -21,25 +21,32 @@ from django.urls import reverse
 def show_main(request):
     products = Product.objects.filter(user=request.user)
     total_products = products.count()
+    if request.method == 'POST':
+        action = request.POST.get('action')
+        product_id = request.POST.get('product_id')
+
+        if action == 'add_stock':
+            product = Product.objects.get(id=product_id)
+            product.amount += 1
+            product.save()
+        elif action == 'reduce_stock':
+            product = Product.objects.get(id=product_id)
+            if product.amount > 0:
+                product.amount -= 1
+                product.save()
+        elif action == 'delete_product':
+            product = Product.objects.get(id=product_id)
+            product.delete()
+            return HttpResponseRedirect(reverse('main:show_main'))
+        
     context = {
         'name': request.user.username,
-        # 'name'  : 'Clarista',
         'class' : 'PBP C',
         'products' : products,
         'total_products' : total_products,
         'last_login': request.COOKIES['last_login'],
     }
     return render(request, "main.html", context)
-
-# def create_product(request):
-#     form = ProductForm(request.POST or None)
-
-#     if form.is_valid() and request.method == "POST":
-#         form.save()
-#         return HttpResponseRedirect(reverse('main:show_main'))
-
-    # context = {'form': form}
-    # return render(request, "create_product.html", context)
 
 def create_product(request):
     form = ProductForm(request.POST or None)

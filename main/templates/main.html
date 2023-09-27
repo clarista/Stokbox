@@ -68,6 +68,9 @@
             <th>Date Added</th>
             <th>Stok</th>
             <th>Picture</th>
+            <th>Add Product</th>
+            <th>Reduce Product</th>
+            <th>Delete Product</th>
         </tr>
     
         {% for product in products %}
@@ -78,6 +81,37 @@
                 <td>{{product.date_added}}</td>
                 <td>{{product.amount}}</td>
                 <td><img src = "{{product.picture}}" width=100></td>
+                <td>
+                    <!-- Buttons for actions -->
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_stock">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="margin-right: 10px; background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                            Tambah Stok 1
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="reduce_stock">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="margin-right: 10px; background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                            Kurangi Stok 1
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="delete_product">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="background-color: #ff3333; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                            Hapus Produk
+                        </button>
+                    </form>
+                </td>
             </tr>
         {% endfor %}
     </table>
@@ -87,16 +121,18 @@
     <h5>Sesi terakhir login: {{ last_login }}</h5>
 
     <a href="{% url 'main:create_product' %}">
-        <button>
+        <button style="background-color: #007bff; color: #fff; padding: 10px 20px; border: 1px solid #007bff; border-radius: 5px; font-size: 16px; cursor: pointer;">
             Add New Product
         </button>
     </a>
-
+    
     <a href="{% url 'main:logout' %}">
-        <button>
+        <button style="background-color: #eee; color: #333; padding: 10px 20px; border: 1px solid #eee; border-radius: 5px; font-size: 16px; cursor: pointer;">
             Logout
         </button>
     </a>
+    
+    
 
 </body>
 {% endblock content %}
