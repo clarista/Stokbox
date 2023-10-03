@@ -24,7 +24,6 @@ def show_main(request):
     if request.method == 'POST':
         action = request.POST.get('action')
         product_id = request.POST.get('product_id')
-
         if action == 'add_stock':
             product = Product.objects.get(id=product_id)
             product.amount += 1
@@ -108,4 +107,19 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    # Get product berdasarkan ID
+    product = Product.objects.get(pk = id)
+
+    # Set product sebagai instance dari form
+    form = ProductForm(request.POST or None, instance=product)
+
+    if form.is_valid() and request.method == "POST":
+        # Simpan form dan kembali ke halaman awal
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "edit_product.html", context)
 

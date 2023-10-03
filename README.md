@@ -4,6 +4,49 @@ Kelas   : PBP  C <br />
 
 Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kakak asdos, kemarin udah sempet deploy tapi akun saya disable T_T)
 
+================================================ TUGAS 5 ========================================================
+1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.<br/>
+Element selector adalah salah satu jenis selector dalam CSS yang memungkinkan kita untuk memberikan gaya ke semua elemen dengan jenis yang sama di dalam dokumen. Misalnya, selector p akan menargetkan semua elemen paragraf `<p>` di halaman.<br/>
+
+Keuntungan:
+- `Konsistensi`: Dengan menggunakan element selector, saya dapat memastikan bahwa semua elemen dari jenis yang sama memiliki gaya dasar yang sama, memberikan tampilan yang konsisten di seluruh web.
+- `Efisiensi`: Kita tidak perlu menambahkan kelas atau id khusus ke setiap elemen; cukup tentukan gaya satu kali, dan itu akan diterapkan ke seluruh elemen dengan jenis yang sama.<br/>
+Kapan Menggunakannya: Gunakan element selector saat kita ingin memberikan gaya dasar ke semua elemen dengan jenis tertentu. Misalnya, saya ingin semua teks dalam elemen `<p>` memiliki ukuran font 16px dan warna teks hitam. Dalam kasus ini, saya akan menggunakan element selector.
+
+2. Jelaskan HTML5 Tag yang kamu ketahui.<br/>
+- `<header`>: Bagian header dari dokumen atau bagian.
+- `<nav>`: Bagian dari halaman yang berisi tautan navigasi.
+- `<body>`: Untuk menyatakan konten utama dari dokumen HTML
+- `<title>`: Untuk mendefinisikan judul dokumen, yang ditampilkan pada tab browser atau jendela browser.
+- `<input type="number">`: Input untuk angka.
+
+3. Jelaskan perbedaan antara margin dan padding.<br/>
+- `Margin`: Merupakan ruang yang ada di luar elemen. Digunakan untuk mengatur jarak antara elemen dengan elemen lain di sekitarnya. Margin tidak mempengaruhi ukuran elemen itu sendiri, tetapi mempengaruhi posisi dan seberapa jauh elemen tersebut dari elemen lain.
+- `Padding`: Merupakan ruang yang ada di dalam elemen, di antara konten dan batas atau border elemen tersebut. Digunakan untuk mengatur jarak antara konten elemen dengan batasnya. Padding mempengaruhi ukuran keseluruhan elemen karena menambah ruang ekstra di dalam elemen.
+
+4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?<br/>
+- `Bootstrap`: Merupakan framework CSS yang paling populer. Menyediakan komponen siap pakai seperti tombol, modal, dan navigasi yang membantu mempercepat pengembangan. Memiliki basis pengguna yang besar, sehingga mudah menemukan sumber daya dan dukungan.<br/>
+Kapan Menggunakannya: Jika kita ingin prototipe cepat atau membangun situs web dengan komponen yang sering digunakan tanpa harus mendesain dari awal.<br/>
+
+- `Tailwind`: Merupakan pendekatan "utility-first" di mana Anda membangun desain dengan menggabungkan kelas utilitas. Memberi kebebasan untuk mendesain tanpa meninggalkan HTML.Tidak memberikan komponen siap pakai seperti Bootstrap, tetapi memberikan kebebasan penuh dalam mendesain.<br/>
+Kapan Menggunakannya: Jika kita ingin kontrol penuh atas desain kita dan lebih suka pendekatan yang lebih modular dan atomik dalam menulis CSS.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).<br/>
+- `Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut.`<br/>
+Saya menggunakan Bootstrap seperti yang ada pada tutorial karena saya lebih mengerti implementasi dengan Bootstrap.
+
+-  `Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.`<br/>
+Saya menggunakan internal CSS untuk kostumisasi login page, register page, tambah inventori, dan home page. Saya menambahkan background dengan warna gradient agar membuat tampilan bisa lebih menarik. Tidak hanya itu saya juga menambahkan warna pada button dan juga tabel. Ssaya juga menambahkan efek hover pada button.
+
+- `Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.`<br/>
+Saya mengkostumisasi page daftar inventori menjadi lebih berwarna menggunakan card sehingga tampilannya lebih modern dan fleksibel dan terlihat rapi. Selain itu saya juga menggunakan container, agar table ataupun konten-konten bisa berada pada suatu daerah yang sebagaimana bisa tersusun rapi dan mudah dimodifikasi.
+
+============================================== END TUGAS 5 ======================================================
+<br />
+
+
+
+
 ================================================ TUGAS 4 ========================================================
 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?<br />
 `UserCreationForm` dalam Django itu dapat dikatakan sebagai sebuah tools yang bisa digunakan untuk user dalam membuat akun baru. Dengan menggunakan forms, user dapat mendaftarkan akun dengan mudah, termasuk memasukkan username, password, password confirmation. <br />

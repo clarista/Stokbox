@@ -4,46 +4,115 @@
 <head>
     <title>StokBox</title>
     <style>
+        .container {
+        width: 90%;
+        max-width: 1200px;
+        background-color: #f0f0f0;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin: 2% auto;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background: linear-gradient(45deg, #83a4d4, #b6fbff);
             margin: 0;
             padding: 0;
         }
-
+    
         header {
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            padding: 40px 0; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        background: linear-gradient(45deg, #091c6b, #0082fc);
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-bottom: 20px;
         }
 
+        .navbar {
+            overflow: hidden;
+            background-color: #d8eeff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #aaaaaa;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+    
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
         }
-
+    
         table, th, td {
             border: 1px solid #ccc;
         }
-
+    
         th, td {
             padding: 8px;
             text-align: left;
         }
-
+    
         th {
             background-color: #f2f2f2;
         }
-
+    
         img {
             max-width: 100%;
             height: auto;
         }
+    
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+    
+        button:hover {
+            opacity: 0.8;
+        }
+    
+        a {
+            text-decoration: none;
+        }
+
+        table tr:last-child {
+            background-color: #afb3b0; 
+        }
     </style>
 </head>
 <body>
+<div class="navbar">
+    <a href="{% url 'main:show_main' %}">Home</a>
+    <a href="{% url 'main:create_product' %}">Add Product</a>
+    <a href="{% url 'main:logout' %}" style="float:right">Logout</a>
+</div>
+<div class="container">
 <header>
     <h1>Selamat Datang, {{name}} di StokBox!</h1>
     <h4>Kelola Persediaan Buah Anda dengan Lebih Baik di StokBox</h4>
@@ -59,7 +128,6 @@
         <p><b>Anda telah menyimpan {{ total_products }} produk di StokBox.</b></p>
     </div>
     
-    
     <table>
         <tr>
             <th>Name</th>
@@ -68,9 +136,9 @@
             <th>Date Added</th>
             <th>Stok</th>
             <th>Picture</th>
-            <th>Add Product</th>
-            <th>Reduce Product</th>
+            <th>+/-</th>
             <th>Delete Product</th>
+            <th>Edit Product</th>
         </tr>
     
         {% for product in products %}
@@ -88,17 +156,16 @@
                         <input type="hidden" name="action" value="add_stock">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
                         <button type="submit" style="margin-right: 10px; background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
-                            Tambah Stok 1
+                            +
                         </button>
                     </form>
-                </td>
-                <td>
+                    <br/>
                     <form method="post" action="{% url 'main:show_main' %}">
                         {% csrf_token %}
                         <input type="hidden" name="action" value="reduce_stock">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
                         <button type="submit" style="margin-right: 10px; background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
-                            Kurangi Stok 1
+                            -
                         </button>
                     </form>
                 </td>
@@ -112,9 +179,17 @@
                         </button>
                     </form>
                 </td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button style="background-color: #0080ff; color: #fff; padding: 10px 20px; border: 1px solid #007bff; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                            Edit
+                        </button>
+                    </a>
+                </td>
             </tr>
         {% endfor %}
     </table>
+
     
     <br />
     
@@ -127,13 +202,11 @@
     </a>
     
     <a href="{% url 'main:logout' %}">
-        <button style="background-color: #eee; color: #333; padding: 10px 20px; border: 1px solid #eee; border-radius: 5px; font-size: 16px; cursor: pointer;">
+        <button style="background-color: #b70000; color: #fff; padding: 10px 20px; border: 1px solid #eee; border-radius: 5px; font-size: 16px; cursor: pointer;">
             Logout
         </button>
     </a>
-    
-    
-
+</div>
 </body>
 {% endblock content %}
 

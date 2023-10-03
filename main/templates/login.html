@@ -1,45 +1,125 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block meta %}
     <title>Login</title>
 {% endblock meta %}
 
 {% block content %}
+<style>
+    /* Background style */
+    body {
+        background: linear-gradient(to right, #003366, #006666); /* Gradien biru hijau tua */
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: #fff; /* Warna teks putih */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center; /* Center horizontal */
+        align-items: center; /* Center vertical */
+        min-height: 100vh; /* Memastikan konten mencakup seluruh tinggi viewport */
+    }
 
-<div class = "login">
+    /* Card style */
+    .card {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        width: 100%; /* Lebar card penuh */
+        max-width: 400px; /* Lebar maksimum card */
+        text-align: center;
+    }
 
-    <h1>Login</h1>
+    .card h1 {
+        margin-bottom: 20px;
+    }
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
+    /* Input style */
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        margin-bottom: 15px;
+    }
 
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
+    .form-control::placeholder {
+        color: #ccc;
+    }
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
+    /* Button style */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        width: 100%; /* Lebar tombol penuh */
+    }
 
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Error message style */
+    .alert-danger {
+        background-color: rgba(255, 0, 0, 0.2);
+        border-color: #ff0000;
+        color: #ff0000;
+    }
+
+    /* Registration link style */
+    .registration-link {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    /* Center text style */
+    .text-center {
+        text-align: center;
+    }
+
+    a {
+        color: #2bbae2; /* Warna tautan putih */
+    }
+
+    /* Link hover style */
+    a:hover {
+        color: #ccc; /* Warna tautan saat dihover menjadi abu-abu */
+    }
+</style>
+
+
+<div class="container-fluid mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <div class="card p-5 shadow-sm">
+                <h1 class="text-center mb-4">Login</h1>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username"></label>
+                        <input type="text" name="username" placeholder="Username" class="form-control" id="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="password"></label>
+                        <input type="password" name="password" placeholder="Password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group text-center">
+                        <br/>
+                        <input class="btn btn-primary btn-block" type="submit" value="Login">
+                    </div>
+                </form>
+                {% if messages %}
+                    <ul class="alert alert-danger">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <br/>
+                <p class="text-center">Don't have an account yet?</p>
+                <p class="text-center"></p><a href="{% url 'main:register' %}">Register Now</a></p>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}

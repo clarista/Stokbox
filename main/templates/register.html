@@ -1,34 +1,106 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block meta %}
     <title>Register</title>
 {% endblock meta %}
 
-{% block content %}  
+{% block content %}
+<style>
+    /* Background style */
+    body {
+        background: linear-gradient(to right, #003366, #006666);
+        background-size: cover;
+        background-repeat: no-repeat;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
 
-<div class = "login">
-    
-    <h1>Register</h1>  
+    /* Card style */
+    .card {
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        width: 200%;
+        max-width: 1000px;
+        text-align: center;
+        color: #fff;
+        line-height: 1.5;
+    }
 
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
+    .card input, .card select {
+    margin-bottom: 1rem;  /* Adjust this value as needed */
+    }
+    /* Input style */
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.2);
+        border: none;
+        border-bottom: 1px solid #fff;
+        color: #fff;
+        margin-bottom: 15px;
+    }
 
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
+    .form-control::placeholder {
+        color: #ccc;
+    }
 
-</div>  
+    /* Button style */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        width: 100%;
+    }
 
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Error message style */
+    .alert-danger {
+        background-color: rgba(255, 0, 0, 0.2);
+        border-color: #ff0000;
+        color: #ff0000;
+    }
+
+    a {
+        color: #2bbae2;
+    }
+
+    /* Link hover style */
+    a:hover {
+        color: #ccc;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="card p-5 shadow-sm">
+                <h1 class="text-center mb-5">Register</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    <table class="table-form">
+                        {{ form.as_table }}
+                    </table>
+                    <div class="form-group text-center">
+                        <br/>
+                        <input class="btn btn-primary btn-block" type="submit" value="Daftar">
+                    </div>
+                </form>
+                {% if messages %}
+                    <ul class="alert alert-danger">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}
