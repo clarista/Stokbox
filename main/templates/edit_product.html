@@ -4,19 +4,81 @@
 
 {% block content %}
 
-<h1>Edit Product</h1>
+<style>
+    /* Adding Poppins Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-<form method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Edit Product"/>
-            </td>
-        </tr>
-    </table>
-</form>
+    /* Updated Background Gradient */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(45deg, #a6c0fe, #f68084);
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Container */
+    .container {
+        width: 75%;
+        max-width: 900px;
+        background: linear-gradient(135deg, #e6f7ff, #ffffff); /* Gradient background added here */
+        padding: 40px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #2a2a2a;
+        margin-bottom: 25px;
+    }
+
+    /* Table Styles */
+    table {
+        width: 100%;
+    }
+
+    td {
+        padding: 15px 20px;
+        border-bottom: 1px solid #f2f2f2;
+    }
+
+    /* Button Styles */
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 50px; /* Rounded corners */
+        cursor: pointer;
+        font-weight: 600; /* Bold font */
+        transition: all 0.3s; /* Smooth transition for all properties */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+        transform: scale(1.05); /* Slight zoom on hover */
+    }
+</style>
+
+<div class="container">
+    <h1>Edit Product</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Update Product"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 {% endblock %}

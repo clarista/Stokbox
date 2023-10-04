@@ -3,43 +3,48 @@
 {% block content %}
 <head>
     <title>StokBox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         .container {
-        width: 90%;
-        max-width: 1200px;
-        background-color: #f0f0f0;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        margin: 2% auto;
+            font-family: Poppins, sans-serif;
+            width: 90%;
+            max-width: 1200px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 2% auto;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #83a4d4, #b6fbff);
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(45deg, #a6c0fe, #f68084);
             margin: 0;
             padding: 0;
         }
     
         header {
-        background: linear-gradient(45deg, #091c6b, #0082fc);
-        color: #fff;
-        text-align: center;
-        padding: 20px 0;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        margin-bottom: 20px;
+            font-family: Poppins, sans-serif;
+            background: linear-gradient(45deg, #99addc, #f68084);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         .navbar {
+            font-family: Poppins, sans-serif;
             overflow: hidden;
-            background-color: #d8eeff;
+            background-color: #bbc4f0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             margin: 20px 0;
         }
 
         .navbar a {
+            font-family: Poppins, sans-serif;
             float: left;
             display: block;
             color: black;
@@ -50,32 +55,36 @@
         }
 
         .navbar a:hover {
-            background-color: #aaaaaa;
-            color: black;
+            text-decoration: underline;
+            background-color: transparent;
         }
 
+
         .navbar a.active {
-            background-color: #007bff;
+            background-color: #d4b4e7;
             color: white;
         }
 
-    
         table {
+            font-family: Poppins, sans-serif;
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
     
         table, th, td {
+            font-family: Poppins, sans-serif;
             border: 1px solid #ccc;
         }
     
         th, td {
+            font-family: Poppins, sans-serif;
             padding: 8px;
-            text-align: left;
+            text-align: center;
         }
     
         th {
+            font-family: Poppins, sans-serif;
             background-color: #f2f2f2;
         }
     
@@ -85,6 +94,7 @@
         }
     
         button {
+            font-family: Poppins, sans-serif;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
@@ -98,11 +108,12 @@
         }
     
         a {
+            font-family: Poppins, sans-serif;
             text-decoration: none;
         }
 
         table tr:last-child {
-            background-color: #afb3b0; 
+            background-color: #ecd8fb; 
         }
     </style>
 </head>
@@ -175,16 +186,16 @@
                         <input type="hidden" name="action" value="delete_product">
                         <input type="hidden" name="product_id" value="{{ product.id }}">
                         <button type="submit" style="background-color: #ff3333; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
-                            Hapus Produk
+                            Hapus
                         </button>
                     </form>
                 </td>
                 <td>
                     <a href="{% url 'main:edit_product' product.pk %}">
-                        <button style="background-color: #0080ff; color: #fff; padding: 10px 20px; border: 1px solid #007bff; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                        <button style="background-color: #e8f1fc; color: #000; padding: 5px 10px; border: 1px solid #007bff; border-radius: 4px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">
                             Edit
                         </button>
-                    </a>
+                    </a>                    
                 </td>
             </tr>
         {% endfor %}

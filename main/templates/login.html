@@ -2,16 +2,16 @@
 {% load static %}
 {% block meta %}
     <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 {% endblock meta %}
 
 {% block content %}
 <style>
     /* Background style */
     body {
-        background: linear-gradient(to right, #003366, #006666); /* Gradien biru hijau tua */
-        background-size: cover;
-        background-repeat: no-repeat;
-        color: #fff; /* Warna teks putih */
+        font-family: Poppins, sans-serif; /* Set font to Poppins */
+        background: linear-gradient(45deg, #a6c0fe, #f68084); /* Change gradient background */
+        color: #fff;
         margin: 0;
         padding: 0;
         display: flex;
@@ -45,12 +45,12 @@
     }
 
     .form-control::placeholder {
-        color: #ccc;
+        color: #fff;
     }
 
     /* Button style */
     .btn-primary {
-        background-color: #007bff;
+        background-color: #8cb5e1;
         border: none;
         width: 100%; /* Lebar tombol penuh */
     }
@@ -63,7 +63,7 @@
     .alert-danger {
         background-color: rgba(255, 0, 0, 0.2);
         border-color: #ff0000;
-        color: #ff0000;
+        color: #ffa4a4;
     }
 
     /* Registration link style */
@@ -78,7 +78,7 @@
     }
 
     a {
-        color: #2bbae2; /* Warna tautan putih */
+        color: #69bcd0; /* Warna tautan putih */
     }
 
     /* Link hover style */

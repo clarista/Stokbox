@@ -32,14 +32,17 @@ Kapan Menggunakannya: Jika kita ingin prototipe cepat atau membangun situs web d
 Kapan Menggunakannya: Jika kita ingin kontrol penuh atas desain kita dan lebih suka pendekatan yang lebih modular dan atomik dalam menulis CSS.
 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).<br/>
-- `Kustomisasi desain pada templat HTML yang telah dibuat pada Tugas 4 dengan menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut.`<br/>
-Saya menggunakan Bootstrap seperti yang ada pada tutorial karena saya lebih mengerti implementasi dengan Bootstrap.
+- Kustomisasi desain pada templat HTML dengan menggunakan CSS atau CSS framework:<br/>
+   - Pendekatan: Saya memilih untuk memanfaatkan Bootstrap sebagai basis desain karena familiaritas saya dengan pustaka tersebut. Selain itu, Bootstrap menawarkan komponen yang siap pakai yang mempercepat proses desain.
+   - Implementasi: Pertama, saya mengintegrasikan Bootstrap ke dalam proyek dengan menambahkan tautan ke CDN Bootstrap di bagian `<head>` dari template. Setelah itu, saya mulai menerapkan kelas-kelas Bootstrap ke elemen HTML untuk memperoleh tata letak yang responsif dan komponen yang dioptimalkan.
+   
+- Kustomisasi halaman login, register, dan tambah inventori:**<br/>
+   - Pendekatan: Mengingat pentingnya user experience, saya ingin memastikan bahwa halaman-halaman tersebut tidak hanya estetik tetapi juga mudah digunakan. Saya memilih warna-warna yang kontras untuk membedakan elemen penting dan memastikan mereka menonjol.
+   - Implementasi: Saya menggunakan stylesheet internal untuk mengatur tampilan dan perilaku elemen-elemen seperti input fields, buttons, dan labels. Efek hover ditambahkan pada button untuk memberikan feedback visual kepada pengguna saat mereka mengarahkan kursor ke atasnya. Warna gradient di latar belakang memberikan nuansa modern dan dinamis.
 
--  `Kustomisasi halaman login, register, dan tambah inventori semenarik mungkin.`<br/>
-Saya menggunakan internal CSS untuk kostumisasi login page, register page, tambah inventori, dan home page. Saya menambahkan background dengan warna gradient agar membuat tampilan bisa lebih menarik. Tidak hanya itu saya juga menambahkan warna pada button dan juga tabel. Ssaya juga menambahkan efek hover pada button.
-
-- `Kustomisasi halaman daftar inventori menjadi lebih berwarna maupun menggunakan apporach lain seperti menggunakan Card.`<br/>
-Saya mengkostumisasi page daftar inventori menjadi lebih berwarna menggunakan card sehingga tampilannya lebih modern dan fleksibel dan terlihat rapi. Selain itu saya juga menggunakan container, agar table ataupun konten-konten bisa berada pada suatu daerah yang sebagaimana bisa tersusun rapi dan mudah dimodifikasi.
+- Kustomisasi halaman daftar inventori:<br/>
+   - Pendekatan: Daripada hanya menampilkan daftar yang polos, saya memutuskan untuk memanfaatkan card, yang adalah salah satu komponen paling fleksibel dan visual menarik dalam desain web modern.
+   - Implementasi: Saya membuat setiap item inventori sebagai card yang terpisah. Setiap card memiliki bayangan ringan untuk menambahkan kedalaman dan estetika visual. Saya juga menambahkan padding dan margin yang sesuai untuk memastikan konten tidak terlihat padat dan memberikan ruang bernafas antara elemen. Container digunakan untuk memastikan semua konten berada di tengah halaman dan mempertahankan lebar maksimum tertentu, sehingga tetap terlihat rapi pada layar yang lebih besar.
 
 ============================================== END TUGAS 5 ======================================================
 <br />
