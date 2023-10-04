@@ -14,6 +14,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             margin: 2% auto;
+            margin-top: 60px;
         }
 
         body {
@@ -35,18 +36,34 @@
         }
 
         .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
             font-family: Poppins, sans-serif;
             overflow: hidden;
             background-color: #bbc4f0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            margin: 20px 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-between; /* Mengatur ruang antara elemen di dalam navbar */
+            align-items: center; /* Pusatkan vertikal */
+        }
+
+        .navbar-left {
+            float: left; /* Mengatur elemen ke kiri */
+            margin-left: 10px; /* Memberikan jarak dari kiri */
+        }
+
+
+        .navbar-right {
+            display: flex;
+            gap: 10px; /* Jarak antara tombol-tombol */
         }
 
         .navbar a {
             font-family: Poppins, sans-serif;
-            float: left;
-            display: block;
             color: black;
             text-align: center;
             padding: 14px 16px;
@@ -59,10 +76,14 @@
             background-color: transparent;
         }
 
-
         .navbar a.active {
             background-color: #d4b4e7;
             color: white;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px; /* Jarak antara tombol-tombol */
         }
 
         table {
@@ -119,10 +140,15 @@
 </head>
 <body>
 <div class="navbar">
-    <a href="{% url 'main:show_main' %}">Home</a>
-    <a href="{% url 'main:create_product' %}">Add Product</a>
-    <a href="{% url 'main:logout' %}" style="float:right">Logout</a>
+    <div class="navbar-left">
+        <a><b>Welcome, {{ name }}!</b></a>
+    </div>
+    <div class="navbar-right">
+        <a href="{% url 'main:create_product' %}">Add Product</a>
+        <a href="{% url 'main:logout' %}">Logout</a>
+    </div>
 </div>
+    
 <div class="container">
 <header>
     <h1>Selamat Datang, {{name}} di StokBox!</h1>
