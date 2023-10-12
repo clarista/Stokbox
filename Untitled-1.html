@@ -1,0 +1,112 @@
+
+    <!-- <table id="product_table">
+
+    </table> -->
+    <!-- <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Stok</th>
+            <th>Picture</th>
+            <th>+/-</th>
+            <th>Delete Product</th>
+            <th>Edit Product</th>
+        </tr>
+    
+        {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.date_added}}</td>
+                <td>{{product.amount}}</td>
+                <td><img src = "{{product.picture}}" width=100></td>
+                <td>
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_stock">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="margin-right: 10px; background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                            +
+                        </button>
+                    </form>
+                    <br/> 
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="reduce_stock">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="margin-right: 10px; background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                            -
+                        </button>
+                    </form> 
+                </td>
+                <td>
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="delete_product">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="background-color: #ff3333; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer;">
+                            Hapus
+                        </button>
+                    </form>
+                </td>
+                <td>
+                    <a href="{% url 'main:edit_product' product.pk %}">
+                        <button style="background-color: #e8f1fc; color: #000; padding: 5px 10px; border: 1px solid #007bff; border-radius: 4px; font-size: 14px; cursor: pointer; transition: background-color 0.3s;">
+                            Edit
+                        </button>
+                    </a>                    
+                </td>
+            </tr>
+        {% endfor %}
+    </table>  -->
+    <!-- <table id="product_table"> -->
+        <!-- <div class="row">
+            {% for product in products %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{product.picture}}" class="card-img-top" width="100"> 
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text">{{product.description}}</p>
+                    <p class="card-text">Price: {{product.price}}</p>
+                    <p class="card-text">Stock: {{product.amount}}</p>
+                    <p class="card-text">Date Added: {{product.date_added}}</p>
+                
+                    <a href="{% url 'main:edit_product' product.pk %}" class="btn btn-primary" style="display: block; margin-bottom: 10px;">Edit</a>
+                
+                    <form method="post" action="{% url 'main:show_main' %}" style="margin-bottom: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="add_stock">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; width: 100%;">
+                            Add Stock
+                        </button>
+                    </form>
+                
+                    <form method="post" action="{% url 'main:show_main' %}" style="margin-bottom: 10px;">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="reduce_stock">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; width: 100%;">
+                            Reduce Stock
+                        </button>
+                    </form>
+                
+                    <form method="post" action="{% url 'main:show_main' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="delete_product">
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button type="submit" style="background-color: #ff3333; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; width: 100%;">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button> -->
+           

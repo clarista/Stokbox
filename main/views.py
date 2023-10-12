@@ -12,31 +12,30 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 import datetime
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='/login')
 # Create your views here.
 def show_main(request):
     products = Product.objects.filter(user=request.user)
     total_products = products.count()
-    if request.method == 'POST':
-        action = request.POST.get('action')
-        product_id = request.POST.get('product_id')
-        if action == 'add_stock':
-            product = Product.objects.get(id=product_id)
-            product.amount += 1
-            product.save()
-        elif action == 'reduce_stock':
-            product = Product.objects.get(id=product_id)
-            if product.amount > 0:
-                product.amount -= 1
-                product.save()
-        elif action == 'delete_product':
-            product = Product.objects.get(id=product_id)
-            product.delete()
-            return HttpResponseRedirect(reverse('main:show_main'))
+    # if request.method == 'POST':
+    #     action = request.POST.get('action')
+    #     product_id = request.POST.get('product_id')
+    #     if action == 'add_stock':
+    #         product = Product.objects.get(id=product_id)
+    #         product.amount += 1
+    #         product.save()
+    #     elif action == 'reduce_stock':
+    #         product = Product.objects.get(id=product_id)
+    #         if product.amount > 0:
+    #             product.amount -= 1
+    #             product.save()
+    #     elif action == 'delete_product':
+    #         product = Product.objects.get(id=product_id)
+    #         product.delete()
+    #         return HttpResponseRedirect(reverse('main:show_main'))
         
     context = {
         'name': request.user.username,
@@ -123,3 +122,66 @@ def edit_product(request, id):
     context = {'form': form}
     return render(request, "edit_product.html", context)
 
+
+def get_product_json(request):
+    product_item = Product.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+
+@csrf_exempt
+def add_product_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        price = request.POST.get("price")
+        description = request.POST.get("description")
+        amount = request.POST.get("amount")
+        picture = request.POST.get("picture")
+
+        user = request.user
+
+        new_product = Product(name=name, price=price, description=description,amount=amount, picture=picture, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
+
+# Fungsi untuk menambah stok produk
+def add_stock(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        try:
+            product = Product.objects.get(id=product_id)
+            product.amount += 1
+            product.save()
+            return JsonResponse({'message': 'Stock added successfully'})
+        except Product.DoesNotExist:
+            return JsonResponse({'message': 'Product not found'}, status=404)
+    return JsonResponse({'message': 'Invalid request method'}, status=405)
+
+# Fungsi untuk mengurangi stok produk
+def reduce_stock(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        try:
+            product = Product.objects.get(id=product_id)
+            if product.amount > 0:
+                product.amount -= 1
+                product.save()
+                return JsonResponse({'message': 'Stock reduced successfully'})
+            else:
+                return JsonResponse({'message': 'Stock cannot be reduced below 0'})
+        except Product.DoesNotExist:
+            return JsonResponse({'message': 'Product not found'}, status=404)
+    return JsonResponse({'message': 'Invalid request method'}, status=405)
+
+# Fungsi untuk menghapus produk
+def delete_product(request):
+    if request.method == 'POST':
+        product_id = request.POST.get('product_id')
+        try:
+            product = Product.objects.get(id=product_id)
+            product.delete()
+            return JsonResponse({'message': 'Product deleted successfully'})
+        except Product.DoesNotExist:
+            return JsonResponse({'message': 'Product not found'}, status=404)
+    return JsonResponse({'message': 'Invalid request method'}, status=405)
