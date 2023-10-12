@@ -239,11 +239,9 @@
 </div>
 
 <script>
-    console.log('hello');
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 
     async function getProducts() {
-        console.log('get products');
         const response = await fetch("{% url 'main:get_product_json' %}");
         return await response.json();
     }
