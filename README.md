@@ -4,6 +4,56 @@ Kelas   : PBP  C <br />
 
 Aplikasi Stokbox: https://clarista-stokbox.adaptable.app/main/ (maaf ibu dan kakak asdos, kemarin udah sempet deploy tapi akun saya disable T_T)
 
+================================================ TUGAS 6 ========================================================
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming. <br />
+   Synchronous programming adalah metode dimana operasi dieksekusi satu per satu dalam urutan yang ditentukan. Jadi, operasi berikutnya dalam antrian harus menunggu hingga operasi sebelumnya selesai sepenuhnya. Ini sangat mudah dipahami dan didebug karena kita dapat dengan mudah memprediksi alur eksekusi kode. Namun, pendekatan ini bisa menjadi masalah jika kita memiliki task yang membutuhkan waktu lama untuk selesai, seperti memuat file besar atau mengakses API web, karena itu akan 'memblokir' eksekusi operasi berikutnya. <br />
+
+   Sebaliknya, asynchronous programming memungkinkan operasi untuk berjalan 'di latar belakang', sehingga tidak memblokir eksekusi tugas lain. Ini sangat berguna dalam skenario dimana kita tidak ingin proses berjalan satu per satu, tetapi sebaliknya ingin memanfaatkan waktu seefisien mungkin. Misalnya, saat kita mungkin ingin memuat beberapa file sekaligus tanpa harus menunggu satu file selesai memuat sebelum memulai yang berikutnya.
+
+   Synchronous programming biasanya lebih mudah untuk dipahami dan ditulis tetapi bisa lebih lambat dan kurang efisien dalam hal penggunaan sumber daya. Asynchronous programming, sebaliknya, bisa lebih sulit untuk didebug dan ditulis tetapi lebih efisien dalam penggunaan waktu dan sumber daya. 
+
+2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+   Paradigma event-driven programming adalah sebuah pendekatan dalam pemrograman di mana alur eksekusi program ditentukan oleh berbagai event atau kejadian, seperti input dari pengguna, permintaan dari server, atau tindakan lain yang memicu respons dari program. Dalam konteks JavaScript dan AJAX, paradigma ini sangat umum digunakan untuk membangun aplikasi web yang interaktif dan responsif.
+
+   Dalam event-driven programming, kode tidak dieksekusi secara linear dari atas ke bawah, tetapi lebih kepada menunggu suatu event terjadi untuk kemudian mengeksekusi fungsi atau blok kode tertentu. Hal ini memungkinkan untuk pengembangan aplikasi yang lebih modular dan lebih mudah dalam menangani berbagai jenis interaksi yang mungkin terjadi.
+
+   Salah satu contoh penerapan paradigma ini pada tugas ini adalah fungsi `refreshProducts` yang saya gunakan. Fungsi ini tampaknya akan dipanggil setiap kali ada perubahan dalam inventori produk, seperti saat produk baru ditambahkan, stok diubah, atau produk dihapus. Di sini, pemanggilan `refreshProducts` bisa dianggap sebagai sebuah event handler yang menanggapi berbagai event terkait inventori produk. Fungsi ini lalu memperbarui tampilan inventori produk berdasarkan data terbaru, membuat aplikasi menjadi lebih dinamis dan responsif terhadap aksi dari pengguna atau sistem itu sendiri.
+
+3. Jelaskan penerapan asynchronous programming pada AJAX.
+   Penerapan asynchronous programming memungkinkan AJAX untuk mengirim permintaan ke server dan menerima respons tanpa harus memblokir atau mengganggu interaksi pengguna dengan halaman web. Ini berarti bahwa pengguna bisa terus berinteraksi dengan elemen-elemen di halaman sementara AJAX melakukan operasi di belakang layar. Di dalam AJAX, metode seperti `fetch` sering digunakan untuk menginisiasi permintaan asinkron. Ketika permintaan ini dilakukan, JavaScript akan terus berjalan dan merespons interaksi pengguna lainnya. Ketika server merespons, sebuah event akan di-trigger, biasanya melalui sebuah callback function atau Promise, yang kemudian akan menangani respons tersebut. Ini bisa berupa memperbarui DOM, menampilkan pesan ke pengguna, atau operasi lainnya yang memanfaatkan data yang diterima dari server. Sebagai contoh, saya menggunakan pendekatan asinkron dalam fungsi `getProducts`. Fungsi ini menggunakan `fetch` untuk mengambil data produk dari server. Karena `fetch` bersifat asinkron, halaman web tetap responsif sementara menunggu data dari server. Setelah data diterima, saya kemudian memperbarui tampilan web dengan memanggil `refreshProducts`.
+
+4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+   Penerapan Fetch API dan jQuery AJAX seringkali menjadi pilihan untuk menangani operasi HTTP asinkron. Fetch API, sebagai fitur bawaan JavaScript modern, menawarkan keuntungan berupa sintaks yang lebih bersih dan ekstensibilitas tinggi. Ia beroperasi berdasarkan Promise, yang memungkinkan penanganan operasi asinkron dengan lebih elegan, terutama ketika digunakan bersama dengan fitur modern lainnya seperti `async/await`. Di sisi lain, jQuery AJAX telah lama menjadi standar industri dan menawarkan kompatibilitas lintas browser yang lebih baik, terutama untuk browser lama. Selain itu, jQuery memiliki basis pengguna yang besar, sehingga banyak dukungan dan sumber daya tersedia. Namun, keberadaannya sebagai library eksternal bisa dianggap sebagai "beban" jika kita hanya membutuhkannya untuk AJAX. Pilihan antara Fetch API dan jQuery AJAX akan sangat bergantung pada kebutuhan dan konteks proyek. Jika kita mengembangkan aplikasi dengan pendekatan modern dan memanfaatkan fitur JavaScript esensial terbaru, Fetch API akan lebih sesuai. Sementara itu, jika kompatibilitas dengan browser lama atau integrasi dengan library jQuery lainnya menjadi prioritas, maka jQuery AJAX bisa menjadi pilihan yang lebih tepat. Kedua teknologi ini memiliki keunggulannya masing-masing, dan memilih yang "lebih baik" akan tergantung pada kasus penggunaan spesifik.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+### AJAX GET
+-  Ubahlah kode cards data item agar dapat mendukung AJAX GET.<br />
+Awalnya,saya menggunakan tabel HTML untuk menampilkan item yang di input oleh user. Kemudian saya menggantinya dengan sejumlah `card` yang akan di-render oleh JavaScript. Setelah itu saya membuat container kosong di HTML untuk menampung cards.
+- Lakukan pengambilan task menggunakan AJAX GET.<br/>
+Untuk mengambil task, saya akan menggunakan `fetch` untuk mendapatkan data dari server. Pada tugas kali ini saya menggunakan fetch untuk mengambil data dari `views.py` yang telah saya buat function kemudian akan digunakan pada script di main.html. Contohnya seperti fungsi `addStock` ini akan memanipulasi DOM untuk menambahkan stok di item kita, sehingga item bisa diatur oleh user.
+
+### AJAX POST
+- Buatlah sebuah tombol yang membuka sebuah modal dengan form untuk menambahkan item. <br/>
+Pada berkas `main.html` saya membuat sebuah modal page yang dimana modal ini adalah sebagai form untuk user menambahkan item ke dalam inventory mereka. Disini saya membuat user dapat mengisi form dengan input `nama`, `harga`, `stok`, `deskripsi`, dan `url link`. Modal di-trigger dengan menekan suatu tombol pada halaman utama. Saat penambahan item berhasil, modal harus ditutup dan input form harus dibersihkan dari data yang sudah dimasukkan ke dalam form sebelumnya. Kemudian item yang di input oleh user akan tampil di halaman user.
+
+- Buatlah fungsi view baru untuk menambahkan item baru ke dalam basis data. <br />
+Disini saya membuat dua fungsi baru di views yaitu `get_product_json` dan `add_product_ajax`. Fungsi `get_product_json` mengambil data produk dari basis data dan mengembalikannya sebagai JSON. Fungsi `add_product_ajax` memproses data dari form untuk membuat produk baru. Jika request-nya POST, data seperti nama, harga, dan deskripsi produk diambil dari form, digunakan untuk membuat objek `Product` baru, dan disimpan ke dalam basis data. Jika berhasil, status 201 (Created) dikembalikan. Jika bukan POST, respons akan menjadi `HttpResponseNotFound`.
+
+- Buatlah path /create-ajax/ yang mengarah ke fungsi view yang baru kamu buat.<br />
+Dalam file `urls.py`, saya menambahkan path baru yang mengarah ke fungsi view `add_product_ajax` yang telah saya buat. Path ini diberi nama `'create-product-ajax/'`, sehingga ketika URL ini diakses, fungsi `add_product_ajax` akan dipanggil untuk menangani request.
+
+- Hubungkan form yang telah kamu buat di dalam modal kamu ke path /create-ajax/. <br/>
+Untuk menghubungkan form di modal ke path `create-product-ajax` setelah menambahkan ke path di urls.py, saya menambahkan event listener untuk menangani saat form di-submit. Di dalam event listener ini, gunakan Fetch API untuk mengirim data formulir ke endpoint `create-product-ajax` melalui metode POST.
+
+- Lakukan refresh pada halaman utama secara asinkronus untuk menampilkan daftar item terbaru tanpa reload halaman utama secara keseluruhan. <br />
+Saya memiliki fungsi `refreshProducts` bertugas untuk memperbarui tampilan produk di halaman web tanpa memuat ulang seluruh halaman. Ia melakukan ini dengan memanggil API endpoint untuk mendapatkan data produk terbaru, kemudian menggunakan data tersebut untuk membangun ulang elemen-elemen DOM yang menampilkan produk. Semua ini dilakukan secara asinkronus, sehingga pengguna tidak perlu menunggu seluruh halaman dimuat ulang untuk melihat perubahan.
+
+- Melakukan perintah collectstatic.
+Saya menjalankan perintah `collectstatic` di file `Dockerfile`. Perintah `python manage.py collectstatic --noinput --clear` di dalam Dockerfile digunakan untuk mengumpulkan semua file statis ke satu folder sebelum deployment. Ini mempermudah akses dan penayangan oleh web server. 
+============================================== END TUGAS 6 ======================================================
+<br />
+
+
 ================================================ TUGAS 5 ========================================================
 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.<br/>
 Element selector adalah salah satu jenis selector dalam CSS yang memungkinkan kita untuk memberikan gaya ke semua elemen dengan jenis yang sama di dalam dokumen. Misalnya, selector p akan menargetkan semua elemen paragraf `<p>` di halaman.<br/>
