@@ -20,22 +20,6 @@ from django.views.decorators.csrf import csrf_exempt
 def show_main(request):
     products = Product.objects.filter(user=request.user)
     total_products = products.count()
-    # if request.method == 'POST':
-    #     action = request.POST.get('action')
-    #     product_id = request.POST.get('product_id')
-    #     if action == 'add_stock':
-    #         product = Product.objects.get(id=product_id)
-    #         product.amount += 1
-    #         product.save()
-    #     elif action == 'reduce_stock':
-    #         product = Product.objects.get(id=product_id)
-    #         if product.amount > 0:
-    #             product.amount -= 1
-    #             product.save()
-    #     elif action == 'delete_product':
-    #         product = Product.objects.get(id=product_id)
-    #         product.delete()
-    #         return HttpResponseRedirect(reverse('main:show_main'))
         
     context = {
         'name': request.user.username,
@@ -124,7 +108,7 @@ def edit_product(request, id):
 
 
 def get_product_json(request):
-    product_item = Product.objects.all()
+    product_item = Product.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', product_item))
 
 @csrf_exempt
@@ -175,13 +159,8 @@ def reduce_stock(request):
     return JsonResponse({'message': 'Invalid request method'}, status=405)
 
 # Fungsi untuk menghapus produk
-def delete_product(request):
-    if request.method == 'POST':
-        product_id = request.POST.get('product_id')
-        try:
-            product = Product.objects.get(id=product_id)
-            product.delete()
-            return JsonResponse({'message': 'Product deleted successfully'})
-        except Product.DoesNotExist:
-            return JsonResponse({'message': 'Product not found'}, status=404)
-    return JsonResponse({'message': 'Invalid request method'}, status=405)
+def delete_product(request, product_id):
+    if request.method == 'DELETE':
+        Product.objects.filter(id=product_id).delete()
+
+        return JsonResponse({'status': 'success'})

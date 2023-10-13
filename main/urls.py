@@ -24,5 +24,5 @@ urlpatterns = [
     path('create-product-ajax/', add_product_ajax, name='add_product_ajax'),
     path('add_stock/', add_stock, name='add_stock'),
     path('reduce_stock/', reduce_stock, name='reduce_stock'),
-    path('delete_product/', delete_product, name='delete_product'),
+    path('delete_product/<int:product_id>/', delete_product, name='delete_product'),
 ]

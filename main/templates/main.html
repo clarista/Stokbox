@@ -132,21 +132,31 @@
             text-decoration: none;
         }
 
-        table tr:last-child {
-            background-color: #ecd8fb; 
-        }
-
         #product_table {
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 100px;
+            gap: 20px;
         }
 
-        .custom-card {
-            width: 100%; /* Atur lebar card menjadi 100% dari lebar kontainer */
-            max-width: 300px; /* Atur lebar maksimum card sesuai kebutuhan Anda */
+        /* .custom-card {
+            width: 100%; 
+            max-width: 300px; 
+         */
+        
+        /* .custom-card:last-child {
+            background-color: #ff3737; 
+            color: #000;  */
+
+        .card {
+            width: 100%; 
+            max-width: 275px; 
         }
+
+        .card:last-child {
+            background-color: #ddff00; /* Anda bisa mengganti ini dengan warna yang Anda suka */
+        }
+
 
 
     </style>
@@ -218,18 +228,17 @@
             </div>
         </div>
     </table>
+    <h5>Sesi terakhir login: {{ last_login }}</h5>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
     
     <br />
-
     
-    <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-    <a href="{% url 'main:create_product' %}">
+    <!-- <a href="{% url 'main:create_product' %}">
         <button style="background-color: #007bff; color: #fff; padding: 10px 20px; border: 1px solid #007bff; border-radius: 5px; font-size: 16px; cursor: pointer;">
             Add New Product
         </button>
-    </a> 
+    </a>  -->
     
     <a href="{% url 'main:logout' %}">
         <button style="background-color: #b70000; color: #fff; padding: 10px 20px; border: 1px solid #eee; border-radius: 5px; font-size: 16px; cursor: pointer;">
@@ -275,20 +284,22 @@
     }
 
     function deleteProduct(pk) {
-        const form = new FormData()
-        form.append('product_id', pk)
-
-        fetch('/delete_product/', {
-            method: 'POST',
+        fetch(`/delete_product/${pk}/`, {
+            method: 'DELETE',
             headers: {
                 'X-CSRFToken': csrftoken,
                 'mode': 'same-origin'
-            },
-            body: form
-        }).then(res => {console.log('hehe');refreshProducts()})
-        window.location.reload()
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Product deleted:', data);
+            refreshProducts();
+            window.location.reload();
+        })
+        .catch(error => console.error('Error:', error));
     }
-    
+
     async function refreshProducts() {
         console.log('refresh products');
         document.getElementById("product_table").innerHTML = ""
@@ -296,34 +307,36 @@
 
         products.forEach((products) => {
             const card = `
-            <div class="col-md-4 mb-4 custom-card">
-                <div class="card">
-                    <img src="${products.fields.picture}" class="card-img-top" width="100"> 
-                    <div class="card-body">
-                        <h5 class="card-title">${products.fields.name}</h5>
-                        <p class="card-text">${products.fields.description}</p>
-                        <p class="card-text">Price: ${products.fields.price}</p>
-                        <p class="card-text">Stock: ${products.fields.amount}</p>
-                        <p class="card-text">Date Added: ${products.fields.date_added}</p>
-                        <a href="edit-product/${products.pk}" class="btn btn-primary" style="margin-bottom: 10px;">Edit</a>
-                        <button onclick="addStock(${products.pk})" type="submit" style="background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 50%; font-size: 14px; cursor: pointer; width: 40px; height: 40px; margin-right: 10px;">
-                            +
-                        </button>
-                        <button onclick="reduceStock(${products.pk})" type="submit" style="background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 50%; font-size: 14px; cursor: pointer; width: 40px; height: 40px; margin-right: 10px;">
-                            -
-                        </button>
-                        <button onclick="deleteProduct(${products.pk})" type="submit" style="background-color: #ff3333; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; width: 100%; margin-right: 10px;">
-                            Delete
-                        </button>
-                        </div>
+             <div class="col-md-4 mb-4 card">
+                <img src="${products.fields.picture}" class="card-img-top" width="100"> 
+                <div class="card-body">
+                    <h5 class="card-title">${products.fields.name}</h5>
+                    <p class="card-text">${products.fields.description}</p>
+                    <p class="card-text">Price: ${products.fields.price}</p>
+                    <p class="card-text">Stock: ${products.fields.amount}</p>
+                    <p class="card-text">Date Added: ${products.fields.date_added}</p>
+                    <a href="edit-product/${products.pk}" class="btn btn-primary" style="margin-bottom: 10px;">Edit</a>
+                    <br />
+                    <br />
+                    <button onclick="addStock(${products.pk})" type="submit" style="background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 50%; font-size: 14px; cursor: pointer; width: 40px; height: 40px; margin-right: 10px;">
+                        +
+                    </button>
+                    <button onclick="reduceStock(${products.pk})" type="submit" style="background-color: #007bff; color: #fff; padding: 5px 10px; border: none; border-radius: 50%; font-size: 14px; cursor: pointer; width: 40px; height: 40px; margin-right: 10px;">
+                        -
+                    </button>
+                    <br />
+                    <br />
+                    <button onclick="deleteProduct(${products.pk})" type="submit" style="background-color: #ff3333; color: #fff; padding: 5px 10px; border: none; border-radius: 5px; font-size: 14px; cursor: pointer; width: 100%; margin-right: 10px;">
+                        Delete
+                    </button>
                     </div>
+                </div>
                 </div>`;
-            document.getElementById("product_table").innerHTML += card; // Mengganti productContainer dengan getElementById
+            document.getElementById("product_table").innerHTML += card; 
         });
     }
     
     function addProduct() {
-        console.log('tes');
         const formData = new FormData();
         formData.append('name', document.querySelector('#name').value)
         formData.append('price', document.querySelector('#price').value)
