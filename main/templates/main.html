@@ -139,22 +139,13 @@
             gap: 20px;
         }
 
-        /* .custom-card {
-            width: 100%; 
-            max-width: 300px; 
-         */
-        
-        /* .custom-card:last-child {
-            background-color: #ff3737; 
-            color: #000;  */
-
         .card {
             width: 100%; 
             max-width: 275px; 
         }
 
         .card:last-child {
-            background-color: #ddff00; /* Anda bisa mengganti ini dengan warna yang Anda suka */
+            background-color: #f6daef; /* Anda bisa mengganti ini dengan warna yang Anda suka */
         }
 
 
@@ -266,7 +257,7 @@
                 'mode': 'same-origin'
             },
             body: form
-        }).then(res => {console.log('hehe');refreshProducts()})
+        }).then(res => {refreshProducts()})
     }
 
     function reduceStock(pk) {
@@ -280,7 +271,7 @@
                 'mode': 'same-origin'
             },
             body: form
-        }).then(res => {console.log('hehe');refreshProducts()})
+        }).then(res => {refreshProducts()})
     }
 
     function deleteProduct(pk) {
@@ -301,7 +292,6 @@
     }
 
     async function refreshProducts() {
-        console.log('refresh products');
         document.getElementById("product_table").innerHTML = ""
         const products = await getProducts()
 
