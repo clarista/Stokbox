@@ -16,7 +16,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 @login_required(login_url='/login')
-# Create your views here.
+
 def show_main(request):
     products = Product.objects.filter(user=request.user)
     total_products = products.count()

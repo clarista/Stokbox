@@ -47,19 +47,19 @@
             border-radius: 10px;
             margin: 0;
             display: flex;
-            justify-content: space-between; /* Mengatur ruang antara elemen di dalam navbar */
-            align-items: center; /* Pusatkan vertikal */
+            justify-content: space-between; 
+            align-items: center; 
         }
 
         .navbar-left {
-            float: left; /* Mengatur elemen ke kiri */
-            margin-left: 10px; /* Memberikan jarak dari kiri */
+            float: left; 
+            margin-left: 10px; 
         }
 
 
         .navbar-right {
             display: flex;
-            gap: 10px; /* Jarak antara tombol-tombol */
+            gap: 10px;
         }
 
         .navbar a {
@@ -83,7 +83,7 @@
 
         .nav-buttons {
             display: flex;
-            gap: 10px; /* Jarak antara tombol-tombol */
+            gap: 10px; 
         }
 
         table {
@@ -145,9 +145,8 @@
         }
 
         .card:last-child {
-            background-color: #f6daef; /* Anda bisa mengganti ini dengan warna yang Anda suka */
+            background-color: #f6daef; 
         }
-
 
 
     </style>
@@ -286,7 +285,6 @@
         .then(data => {
             console.log('Product deleted:', data);
             refreshProducts();
-            window.location.reload();
         })
         .catch(error => console.error('Error:', error));
     }
@@ -340,7 +338,6 @@
             refreshProducts();
             document.getElementById("form").reset();
         });
-        window.location.reload()
     }
     
     document.getElementById("button_add").addEventListener("click", addProduct);
