@@ -185,3 +185,8 @@ def create_product_flutter(request):
         return JsonResponse({"status": "success"}, status=200)
     else:
         return JsonResponse({"status": "error"}, status=401)
+    
+@login_required
+def get_flutter(request):
+    products = Product.objects.filter(user=request.user)
+    return JsonResponse(serializers.serialize('json', products), content_type="application/json")
